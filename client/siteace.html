@@ -75,7 +75,7 @@
 		Votes: {{votes}}
 	</p>
 	<p>
-		Site was added on : {{createdOn}}
+		Site was added on ii: {{createdOn}}
 	</p>
 	<a href="#" class="btn btn-default js-upvote">
 		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
@@ -84,5 +84,42 @@
 		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
 	</a>
 	<!-- you will be putting your up and down vote buttons in here! -->
+	<a href="/detail/{{_id}}" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span></a>
 </li>
+</template>
+
+
+<template name="detail">
+  <div class="container">
+    <h4> Discuss {{url}}</h4>
+    <p> {{description}}</p>
+    
+    <table class="table table-striped">
+      <thead>Comments</thead>
+      <tbody>
+      	 {{> comment_list}} 
+      </tbody>
+     
+    </table>
+    <form class="js-add-comments">
+      <div class="form-group">
+      </div> <!-- end form -->
+      Add your comments
+      <input type="text" class="form-control" id="your_comment">
+      <input type="hidden" name="id" value={{_id}}>
+      <br/>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <a href='/'><button class="btn btn-warning">Return</button></a>
+    </form>
+  </div>
+</template>
+
+<template name="comment_list">
+  	{{#if comments}}
+  	  {{#each comments}}
+  	    <tr><td>
+  	    {{this}}
+  	    </td></tr>
+      {{/each}}
+    {{/if}}
 </template>

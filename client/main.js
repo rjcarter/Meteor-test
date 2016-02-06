@@ -11,6 +11,17 @@ Router.route('/', function(){
   })
 });
 
+Router.route('/detail/:_id', function(){
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('detail', {
+    to: "main",
+    data: function(){
+      return Websites.findOne({_id : this.params._id})
+    }
+  });
+});
 /////
 // template helpers 
 /////
@@ -88,5 +99,15 @@ Template.website_form.events({
 
 		return false;// stop the form submit from reloading the page
 
+	}
+});
+
+Template.detail.events({
+	"submit .js-add-comments" : function(event){
+      var comment = event.target.your_comment.value;
+      var id = event.target.id.value;
+      console.log(comment + ".." + id);
+      Websites.update({_id:id},{$push:{comments:comment}});
+      return false;
 	}
 });

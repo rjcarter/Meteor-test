@@ -1,8 +1,13 @@
 <head>
   <title>siteace</title>
 </head>
+<template name="ApplicationLayout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
+</template>
 
-<body>
+
+<template name="navbar">
 	<!-- navbar  - you will be putting the login functions here -->
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -11,14 +16,19 @@
 	        Site Ace
 	      </a>
 	    </div>
+	    <div class="pull-right">
+	      {{> loginButtons}}
+	    </div>
 	  </div>
 	</nav>
+</template>
 
+<template name="main">
 	<div class="container">
 		{{> website_form}}
 		{{> website_list}}
 	</div>
-</body>
+</template>
 
 
 <template name="website_form">
